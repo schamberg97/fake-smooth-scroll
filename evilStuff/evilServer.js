@@ -11,6 +11,11 @@ const app = express();
 const bodyParser = require('body-parser')
 const urlEncodedParser = bodyParser.urlencoded({extended: true})
 
+app.use('*', (req, res, next) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	return next()
+})
+
 app.use('/static/', express.static('static'))
 
 app.get('/page/', (req,res) => {
